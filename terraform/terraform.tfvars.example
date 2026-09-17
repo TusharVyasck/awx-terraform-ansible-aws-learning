@@ -1,0 +1,9 @@
+# Copy this file to terraform.tfvars and fill in your real values.
+# terraform.tfvars is git-ignored so you never accidentally commit it.
+
+aws_region       = "us-east-1"
+instance_type    = "t2.micro"
+instance_count   = 2
+key_name         = "REPLACE_WITH_YOUR_AWS_KEYPAIR_NAME"
+project_tag      = "awx-learning"
+allowed_ssh_cidr = "REPLACE_WITH_YOUR_IP/32"

@@ -1,0 +1,40 @@
+---
+- name: Install nginx and apache2-utils (for htpasswd)
+  ansible.builtin.apt:
+    name:
+      - nginx
+      - apache2-utils
+    state: present
+    update_cache: true
+
+- name: Deploy a simple index page
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: "0644"
+  notify: restart nginx
+
+- name: Set up basic auth on the site (demonstrates using a Vault secret)
+  when: enable_basic_auth | default(false)
+  block:
+    - name: Create htpasswd file using the vaulted admin password
+      community.general.htpasswd:
+        path: /etc/nginx/.htpasswd
+        name: admin
+        password: "{{ vault_webserver_admin_password }}"
+        mode: "0640"
+
+    - name: Require auth in the default nginx site
+      ansible.builtin.blockinfile:
+        path: /etc/nginx/sites-available/default
+        insertafter: "location / {"
+        block: |
+          auth_basic "Restricted";
+          auth_basic_user_file /etc/nginx/.htpasswd;
+      notify: restart nginx
+
+- name: Ensure nginx is running and enabled
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

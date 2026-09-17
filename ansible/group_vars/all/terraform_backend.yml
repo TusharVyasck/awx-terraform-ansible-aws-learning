@@ -1,0 +1,11 @@
+# NOT secret — the bucket/table names are just identifiers, safe to commit.
+# After running `bootstrap/`, copy its outputs here:
+#   terraform output -raw tf_state_bucket
+#   terraform output -raw tf_state_dynamodb_table
+#
+# Then: cp terraform_backend.yml.example terraform_backend.yml
+
+tf_state_bucket: "awx-learning-tfstate-339713157371"
+tf_state_dynamodb_table: "awx-learning-tfstate-lock"
+tf_state_region: "us-east-1"
+tf_state_key: "awx-learning/terraform.tfstate"

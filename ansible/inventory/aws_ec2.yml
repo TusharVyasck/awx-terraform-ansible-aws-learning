@@ -1,0 +1,16 @@
+# Dynamic inventory source for AWX.
+# In AWX: Resources > Inventories > (your inventory) > Sources > Add
+#   Source: "Sourced from a Project"
+#   Source Path: ansible/inventory/aws_ec2.yml
+#   Credential: your "Amazon Web Services" credential
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+filters:
+  tag:Project: awx-learning
+  instance-state-name: running
+keyed_groups:
+  - key: tags.Role
+    prefix: role
+compose:
+  ansible_host: public_ip_address

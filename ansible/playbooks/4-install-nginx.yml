@@ -1,0 +1,7 @@
+---
+- name: Configure web servers
+  hosts: role_web
+  become: true
+  gather_facts: true
+  roles:
+    - webserver

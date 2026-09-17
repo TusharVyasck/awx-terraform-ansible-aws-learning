@@ -1,0 +1,14 @@
+---
+# Sanity check that AWX can reach the freshly provisioned EC2 instances
+# over SSH using the Machine credential attached to this Job Template.
+- name: Ping newly provisioned nodes
+  hosts: role_web
+  gather_facts: false
+  tasks:
+    - name: Wait for SSH to come up
+      ansible.builtin.wait_for_connection:
+        delay: 5
+        timeout: 120
+
+    - name: Ping
+      ansible.builtin.ping:

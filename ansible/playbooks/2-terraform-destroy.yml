@@ -1,0 +1,23 @@
+---
+# AWX Job Template target for teardown — no manual `terraform destroy` needed.
+- name: Destroy AWS infrastructure with Terraform
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    tf_project_path: "{{ playbook_dir }}/../../terraform"
+
+  tasks:
+    - name: Run terraform destroy
+      cloud.terraform.terraform:
+        project_path: "{{ tf_project_path }}"
+        state: absent
+        force_init: true
+        backend_config:
+          bucket: "{{ tf_state_bucket }}"
+          key: "{{ tf_state_key }}"
+          region: "{{ tf_state_region }}"
+          dynamodb_table: "{{ tf_state_dynamodb_table }}"
+        variables:
+          key_name: "{{ aws_key_pair_name | default('REPLACE_WITH_YOUR_AWS_KEYPAIR_NAME') }}"

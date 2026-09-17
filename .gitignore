@@ -1,0 +1,27 @@
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/terraform.tfvars
+terraform/.terraform.lock.hcl
+
+# Bootstrap (creates real secrets locally)
+bootstrap/.terraform/
+bootstrap/*.tfstate
+bootstrap/*.tfstate.backup
+bootstrap/*.tfvars
+bootstrap/*.pem
+bootstrap/.terraform.lock.hcl
+
+# Ansible Vault: commit the ENCRYPTED vault.yml (ansible-vault encrypt),
+# never the plaintext. AWX reads this file from the git-synced Project,
+# so ignoring it here would leave the variable undefined at job run time.
+# The .example file is the plaintext template — keep that one only.
+
+# Terraform remote state config: also commit the real terraform_backend.yml
+# (copied from .example, values filled from bootstrap's outputs). It's not
+# secret — just a bucket/table name — and AWX needs it in git the same way.
+
+# Misc
+*.retry
+.DS_Store

@@ -14,7 +14,7 @@
     tf_state_key: "awx-learning/terraform.tfstate"
     tf_state_region: "us-east-1"
     tf_state_dynamodb_table: "awx-learning-tfstate-lock"
-    aws_key_pair_name: "{{ awx-learning-key }}"
+    aws_key_pair_name: "awx-learning-key"
 
   tasks:
     - name: Run terraform apply

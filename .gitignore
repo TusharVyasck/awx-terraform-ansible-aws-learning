@@ -12,6 +12,7 @@ bootstrap/*.tfstate.backup
 bootstrap/*.tfvars
 bootstrap/*.pem
 bootstrap/.terraform.lock.hcl
+execution-environment/context
 
 # Ansible Vault: commit the ENCRYPTED vault.yml (ansible-vault encrypt),
 # never the plaintext. AWX reads this file from the git-synced Project,

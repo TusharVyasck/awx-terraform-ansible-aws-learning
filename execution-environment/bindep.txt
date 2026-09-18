@@ -1,1 +1,3 @@
-unzip [platform:rpm platform:dpkg]
+gcc [platform:rpm platform:dpkg]
+python3-devel [platform:rpm]
+python3-dev [platform:dpkg]

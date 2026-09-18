@@ -7,6 +7,11 @@
 
   vars:
     tf_project_path: "{{ playbook_dir }}/../../terraform"
+    tf_state_bucket: "awx-learning-tfstate-339713157371"
+    tf_state_key: "awx-learning/terraform.tfstate"
+    tf_state_region: "us-east-1"
+    tf_state_dynamodb_table: "awx-learning-tfstate-lock"
+    aws_key_pair_name: "awx-learning-key"
 
   tasks:
     - name: Run terraform destroy
@@ -20,4 +25,4 @@
           region: "{{ tf_state_region }}"
           dynamodb_table: "{{ tf_state_dynamodb_table }}"
         variables:
-          key_name: "{{ aws_key_pair_name | default('REPLACE_WITH_YOUR_AWS_KEYPAIR_NAME') }}"
+          key_name: "{{ aws_key_pair_name }}"

@@ -9,7 +9,7 @@
   gather_facts: false
 
   vars:
-    tf_project_path: "{{ playbook_dir }}/../../terraform"
+    tf_project_path: "{{ playbook_dir }}/../group_vars/all/terraform_backend.yml"
 
   tasks:
     - name: Run terraform apply

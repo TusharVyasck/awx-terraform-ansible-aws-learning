@@ -9,7 +9,11 @@
   gather_facts: false
 
   vars:
-    tf_project_path: "{{ playbook_dir }}/../group_vars/all/terraform_backend.yml"
+    tf_project_path: "{{ playbook_dir }}/../../terraform"
+    tf_state_bucket: "awx-learning-tfstate-339713157371"
+    tf_state_key: "awx-learning/terraform.tfstate"
+    tf_state_region: "us-east-1"
+    tf_state_dynamodb_table: "awx-learning-tfstate-lock"
 
   tasks:
     - name: Run terraform apply

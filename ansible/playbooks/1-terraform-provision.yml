@@ -28,7 +28,7 @@
           region: "{{ tf_state_region }}"
           dynamodb_table: "{{ tf_state_dynamodb_table }}"
         variables:
-          key_name: "{{ aws_key_pair_name | default('REPLACE_WITH_YOUR_AWS_KEYPAIR_NAME') }}"
+          key_name: "{{ aws_key_pair_name }}"
       register: tf_result
 
     - name: Show new instance IPs

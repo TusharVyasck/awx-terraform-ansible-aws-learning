@@ -4,6 +4,7 @@
 - name: Ping newly provisioned nodes
   hosts: role_web
   gather_facts: false
+  remote_user: ubuntu
   tasks:
     - name: Wait for SSH to come up
       ansible.builtin.wait_for_connection:
